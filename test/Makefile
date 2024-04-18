@@ -5,7 +5,15 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
+PROJECT_SOURCES = tt_um_chatgpt_rsnn_paolaunisa.v
+PROJECT_SOURCES += FIPO_Memory.v
+PROJECT_SOURCES += LeakyIntegrateFireNeuron.v
+PROJECT_SOURCES += MemoryCU.v
+PROJECT_SOURCES += RecurrentSpikingNeuron.v
+PROJECT_SOURCES += register.v
+PROJECT_SOURCES += RSNN_TopModule.v
+PROJECT_SOURCES += SpikingNeuronLayer.v
+PROJECT_SOURCES += ThreeLayerNeuralNetwork.v
 
 ifneq ($(GATES),yes)
 
