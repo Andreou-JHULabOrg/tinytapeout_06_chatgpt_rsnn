@@ -20,6 +20,7 @@ module RSNN_TopModule(
     wire sync_system_enable;
     wire sync_spike_input_reg_enable;
     wire sync_RSNN_enable;
+    wire [2:0] input_spikes_sync;
 
     // Synchronizers for each asynchronous enable input
     synchronizer sync_system_enable_sync(
@@ -36,13 +37,40 @@ module RSNN_TopModule(
         .sync_out(sync_spike_input_reg_enable)
     );
 
+
     synchronizer sync_RSNN_enable_sync(
         .clk(clk),
         .reset(reset),
         .async_in(RSNN_enable),
         .sync_out(sync_RSNN_enable)
     );
-
+    
+    
+    // Synchronizers for each input spike
+    synchronizer spike1_sync(
+        .clk(clk),
+        .reset(reset),
+        .async_in(input_spikes[0]),
+        .sync_out(input_spikes_sync[0])
+    );
+    
+     synchronizer spike2_sync(
+        .clk(clk),
+        .reset(reset),
+        .async_in(input_spikes[1]),
+        .sync_out(input_spikes_sync[1])
+    );   
+    
+    synchronizer spike3_sync(
+        .clk(clk),
+        .reset(reset),
+        .async_in(input_spikes[2]),
+        .sync_out(input_spikes_sync[2])
+    );
+    
+    
+    
+    
     // Intermediate connections
     wire [2:0] registered_spikes;
     wire [215:0] network_weights;
@@ -60,7 +88,7 @@ module RSNN_TopModule(
         .clk(clk),
         .reset(reset),
         .enable(combined_spike_input_reg_enable),
-        .data_in(input_spikes),
+        .data_in(input_spikes_sync),
         .data_out(registered_spikes)
     );
 
