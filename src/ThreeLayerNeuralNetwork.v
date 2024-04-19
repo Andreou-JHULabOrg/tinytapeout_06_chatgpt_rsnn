@@ -1,13 +1,15 @@
 `timescale 1ns / 1ps
 
 module ThreeLayerNeuralNetwork(
-    input clk,                           // Clock signal
-    input reset,                         // Asynchronous reset, active high
-    input enable,                        // Enable input for updating the network
-    input [2:0] external_input_spikes,   // External input spikes for the first layer (1 spike per neuron)
-    input [215:0] input_weights,         // Combined input weights for all three layers
-    input [95:0] neuron_params,          // Combined neuron parameters for all three layers
-    output [2:0] output_spikes           // Output spikes from the last layer's neurons
+    input wire clk,                           // Clock signal
+    input wire reset,                         // Asynchronous reset, active high
+    input wire enable,                        // Enable input for updating the network
+    input wire sel_test,            
+    input wire [2:0] external_input_spikes,   // External input spikes for the first layer (1 spike per neuron)
+    input wire [215:0] input_weights,         // Combined input weights for all three layers
+    input wire [95:0] neuron_params,          // Combined neuron parameters for all three layers
+    output wire [2:0] output_spikes,           // Output spikes from the last layer's neurons
+    output wire [7:0] out_test
 );
 
 // Extract neuron parameters for each layer from the combined neuron_params
@@ -22,14 +24,16 @@ wire [71:0] weights_layer3 = input_weights[71:0];
 
 // Layer 1 - Inputs are external
 wire [2:0] layer1_spikes;
-SpikingNeuronLayer layer1 (
+SpikingNeuronLayer_test layer1_test (
     .clk(clk),
     .reset(reset),
     .enable(enable),
+    .sel_test(sel_test),
     .input_spikes(external_input_spikes),
     .input_weights(weights_layer1),
     .neuron_params(params_layer1),
-    .spike_out(layer1_spikes)
+    .spike_out(layer1_spikes),
+    .out_test(out_test)
 );
 
 // Layer 2 - Inputs are from Layer 1

@@ -1,19 +1,26 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
 
-module LeakyIntegrateFireNeuron(
+
+module LeakyIntegrateFireNeuron_test(
     input wire clk,                          // Clock signal
     input wire reset,                        // Asynchronous reset, active high
     input wire enable,                       // Enable input for updating the neuron
+    input wire sel_test,
     input wire [7:0] input_current,          // Input current (I_ext)
     input wire [7:0] threshold,              // Firing threshold (V_thresh)
     input wire [7:0] decay,                  // Decay value adjusted based on membrane potential sign
     input wire [7:0] refractory_period,      // Refractory period in number of clock cycles, now 8 bits
-    output reg spike_out                // Output spike signal, renamed from 'fired'
+    output reg spike_out,                // Output spike signal, renamed from 'fired'
+    output wire [7:0] out_test
 );
 
     reg [7:0] membrane_potential = 8'b0;  // Membrane potential (V_m), initialized to 0
     reg [7:0] refractory_counter = 8'b0;  // Counter to handle the refractory period, initialized to 0
     wire signed [9:0] potential_update;   // Use a wire for immediate calculation, now 10 bits
+
+    assign out_test = sel_test? threshold:membrane_potential;
+
 
     // Correctly perform sign extension when computing potential_update
     assign potential_update = $signed({membrane_potential[7], membrane_potential[7], membrane_potential}) +
@@ -51,3 +58,4 @@ module LeakyIntegrateFireNeuron(
         end
     end
 endmodule
+

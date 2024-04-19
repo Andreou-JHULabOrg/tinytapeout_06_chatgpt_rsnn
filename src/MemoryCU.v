@@ -1,8 +1,10 @@
+`timescale 1ns / 1ps
+
 module MemoryCU(
-    input clk,                 // Clock input
-    input rst,                 // Asynchronous reset input
-    input enable,              // Enable signal for FSM control
-    input load_params,         // Signal to start loading parameters
+    input wire clk,                 // Clock input
+    input wire rst,                 // Asynchronous reset input
+    input wire enable,              // Enable signal for FSM control
+    input wire load_params,         // Signal to start loading parameters
     output reg params_reg_enable // Control signal for writing to the FIFO
 );
 

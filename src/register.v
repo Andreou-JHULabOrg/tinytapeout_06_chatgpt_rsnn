@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module register #(
     parameter WIDTH = 3  // Default width is 3 bits, but can be set when instantiated
 )(

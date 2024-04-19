@@ -24,15 +24,16 @@ module tt_um_chatgpt_rsnn_paolaunisa (
 //  assign uio_oe  = 0;
   
   wire rst = ! rst_n;
-  wire  [2:0] output_spikes;
+  wire [2:0] output_spikes;
   wire end_writing;
   wire data_written;
-  
+  wire [7:0] out_test;
    
     RSNN_TopModule u_RSNN_TopModule (
         .input_spikes(ui_in[2:0]),
         .clk(clk),
         .reset(rst),
+        .sel_test(ui_in[7]),
         .system_enable(ena),
         .spike_input_reg_enable(ui_in[3]),
         .RSNN_enable(ui_in[4]),
@@ -40,18 +41,20 @@ module tt_um_chatgpt_rsnn_paolaunisa (
         .load_params(ui_in[6]),
         .output_spikes(output_spikes),
         .end_writing(end_writing),
-        .data_written(data_written)
+        .data_written(data_written),
+        .out_test(out_test)
     );
     
       
   assign uo_out[2:0]=output_spikes;
   assign uo_out[3]=end_writing;
   assign uo_out[4]=data_written;
-  assign uo_out[7:5]=3'b0;
-  
+  assign uo_out[7:5]=3'b000;
+ 
+  assign  uio_out=out_test;
   
     //assign uo_out = {7'b0000000, spike};
-    assign uio_out = 8'b0;
-    assign uio_oe = 8'b1; //used bidirectional pins as input
+    //assign uio_out = 8'b0;
+    assign uio_oe = 8'b11111111; //used bidirectional pins as ouput
     
 endmodule

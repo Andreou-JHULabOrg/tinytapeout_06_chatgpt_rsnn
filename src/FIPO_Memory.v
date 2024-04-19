@@ -1,17 +1,17 @@
 `timescale 1ns / 1ps
 
 module FIPO_Memory (
-    input clk,                      // Clock input
-    input rst,                      // Reset input
-    input enable,                   // Enable signal for controlling the module operation
-    input serial_in,                // Serial input data
-    output [311:0] parallel_out,    // Parallel output of all data, always reflects data_memory
+    input wire clk,                      // Clock input
+    input wire rst,                      // Reset input
+    input wire enable,                   // Enable signal for controlling the module operation
+    input wire serial_in,                // Serial input data
+    output wire [311:0] parallel_out,    // Parallel output of all data, always reflects data_memory
     output reg end_writing = 1'b0,  // Output signal that indicates when writing of 312 bits is complete
     output reg data_written = 1'b0  // Output signal that indicates when a single bit is written
 );
 
 // Internal memory to store the serially input data
-reg [311:0] data_memory = 312'b0;
+reg [311:0] data_memory = 0;
 // Counter to keep track of the number of bits received
 reg [8:0] bit_counter = 0;  // Needs to count up to 312, thus 9 bits are required
 

@@ -1,15 +1,19 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
 
-module RecurrentSpikingNeuron(
+
+module RecurrentSpikingNeuron_test(
     input wire clk,                          // Clock signal
     input wire reset,                        // Asynchronous reset, active high
     input wire enable,                       // Enable input for updating the neuron
+    input wire sel_test,
     input wire [7:0] external_input_current, // External input current
     input wire [7:0] threshold,              // Firing threshold (V_thresh)
     input wire [7:0] decay,                  // Decay value adjusted based on membrane potential sign
     input wire [7:0] refractory_period,      // Refractory period in number of clock cycles
     input wire [7:0] feedback_scale,         // Feedback scaling factor for the output spike
-    output wire spike_out                    // Output spike signal
+    output wire spike_out,                    // Output spike signal
+    output wire [7:0] out_test
 );
 
     // Internal connections and signals
@@ -17,15 +21,17 @@ module RecurrentSpikingNeuron(
     wire spike_internal;               // Internal spike output from the LIF neuron
 
     // Instance of the LeakyIntegrateFireNeuron
-    LeakyIntegrateFireNeuron lif_neuron(
+    LeakyIntegrateFireNeuron_test lif_neuron_test(
         .clk(clk),
         .reset(reset),
         .enable(enable),
+        .sel_test(sel_test),
         .input_current(input_current),
         .threshold(threshold),
         .decay(decay),
         .refractory_period(refractory_period),
-        .spike_out(spike_internal)
+        .spike_out(spike_internal),
+        .out_test(out_test)
     );
 
     // Correctly extending the sign for the feedback scale and external input current
@@ -41,3 +47,4 @@ module RecurrentSpikingNeuron(
     assign spike_out = spike_internal;
 
 endmodule
+

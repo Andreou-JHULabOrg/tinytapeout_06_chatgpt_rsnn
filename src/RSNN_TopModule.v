@@ -1,17 +1,19 @@
 `timescale 1ns / 1ps
 
 module RSNN_TopModule(
-    input [2:0] input_spikes,           // 3-bit input spikes for the network
-    input clk,                          // Clock signal
-    input reset,                        // Asynchronous reset, active high
-    input system_enable,                // Global enable signal for the entire system (asynchronous)
-    input spike_input_reg_enable,       // Enable signal for the input spike register (asynchronous)
-    input RSNN_enable,                  // Enable signal specifically for the RSNN (asynchronous)
-    input data_in,                      // Serial data input for FIFO Memory
-    input load_params,                  // Signal to start loading parameters into the MemoryCU
-    output [2:0] output_spikes,         // 3-bit output spikes from the network
-    output end_writing,                 // Signal from FIPO_Memory indicating end of writing
-    output data_written                 // Signal from FIPO_Memory indicating a bit has been written
+    input wire [2:0] input_spikes,           // 3-bit input spikes for the network
+    input wire clk,                          // Clock signal
+    input wire reset,                        // Asynchronous reset, active high
+    input wire sel_test,                     //  chip debugging
+    input wire system_enable,                // Global enable signal for the entire system (asynchronous)
+    input wire spike_input_reg_enable,       // Enable signal for the input spike register (asynchronous)
+    input wire RSNN_enable,                  // Enable signal specifically for the RSNN (asynchronous)
+    input wire data_in,                      // Serial data input for FIFO Memory
+    input wire load_params,                  // Signal to start loading parameters into the MemoryCU
+    output wire [2:0] output_spikes,         // 3-bit output spikes from the network
+    output wire end_writing,                 // Signal from FIPO_Memory indicating end of writing
+    output wire data_written,                // Signal from FIPO_Memory indicating a bit has been written
+    output wire [7:0] out_test               // Chip debugging
 );
 
     // Synchronized enable signals
@@ -91,19 +93,21 @@ module RSNN_TopModule(
         .clk(clk),
         .reset(reset),
         .enable(combined_RSNN_enable),
+        .sel_test(sel_test),
         .external_input_spikes(registered_spikes),
         .input_weights(network_weights),
         .neuron_params(network_params),
-        .output_spikes(output_spikes)
+        .output_spikes(output_spikes),
+        .out_test(out_test)
     );
 
 endmodule
 
 // Synchronizer module definition
 module synchronizer(
-    input clk,
-    input reset,
-    input async_in,
+    input wire clk,
+    input wire reset,
+    input wire async_in,
     output reg sync_out
 );
     reg intermediate;
