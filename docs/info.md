@@ -26,6 +26,12 @@ Additionally program the first, 2nd, 3rd layer weights. Once programmed activate
 List external hardware used in your project (e.g. PMOD, LED display, etc), if any
 
 ## Memory
+
+The memory block stores 39 words of 8 bits. 
+The first 12 words represent Feedback scale, Refractory Period, Decay rate, Membrane Threshold of each layer ( 4 parameters x 3 layers ).
+The last 27 words represent the network weights ( 3 ins x 3 neurons x 3 layers ).
+
+
 | Address |  Address   | Data Index |  Data Index   | Data Description            | Data Description       |
 |---------|-----|--------------|-----|--------------------|-------|
 | dec     | hex | MSB          | LSB | Description        | LYR # |
