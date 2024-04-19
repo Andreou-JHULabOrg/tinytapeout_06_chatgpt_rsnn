@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module FIPO_Memory (
     input clk,                      // Clock input
     input rst,                      // Reset input
