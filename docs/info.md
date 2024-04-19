@@ -35,18 +35,18 @@ The last 27 words represent the network weights ( 3 ins x 3 neurons x 3 layers )
 | Address |  Address   | Data Index |  Data Index   | Data Description            | Data Description       |
 |---------|-----|--------------|-----|--------------------|-------|
 | dec     | hex | MSB          | LSB | Description        | LYR # |
-| 0       | 0   | 7            | 0   | Feedback scale     | 1     |
-| 1       | 1   | 15           | 8   | Refractory Period  | 1     |
-| 2       | 2   | 23           | 16  | Decay rate         | 1     |
-| 3       | 3   | 31           | 24  | Membrane Threshold | 1     |
-| 4       | 4   | 39           | 32  | Feedback scale     | 2     |
-| 5       | 5   | 47           | 40  | Refractory Period  | 2     |
-| 6       | 6   | 55           | 48  | Decay rate         | 2     |
-| 7       | 7   | 63           | 56  | Membrane Threshold | 2     |
-| 8       | 8   | 71           | 64  | Feedback scale     | 3     |
-| 9       | 9   | 79           | 72  | Refractory Period  | 3     |
-| 10      | A   | 87           | 80  | Decay rate         | 3     |
-| 11      | B   | 95           | 88  | Membrane Threshold | 3     |
+| 0       | 0   | 7            | 0   | Feedback scale     | 2     |
+| 1       | 1   | 15           | 8   | Refractory Period  | 2     |
+| 2       | 2   | 23           | 16  | Decay rate         | 2     |
+| 3       | 3   | 31           | 24  | Membrane Threshold | 2     |
+| 4       | 4   | 39           | 32  | Feedback scale     | 1     |
+| 5       | 5   | 47           | 40  | Refractory Period  | 1     |
+| 6       | 6   | 55           | 48  | Decay rate         | 1     |
+| 7       | 7   | 63           | 56  | Membrane Threshold | 1     |
+| 8       | 8   | 71           | 64  | Feedback scale     | 0     |
+| 9       | 9   | 79           | 72  | Refractory Period  | 0     |
+| 10      | A   | 87           | 80  | Decay rate         | 0     |
+| 11      | B   | 95           | 88  | Membrane Threshold | 0     |
 | 12      | C   | 103          | 96  | weight1_0          | 3     |
 | 13      | D   | 111          | 104 | weight1_1          | 3     |
 | 14      | E   | 119          | 112 | weight1_2          | 3     |
