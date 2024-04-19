@@ -24,7 +24,7 @@ module tt_um_chatgpt_rsnn_paolaunisa (
 //  assign uio_oe  = 0;
   
   wire rst = ! rst_n;
-  wire output_spikes;
+  wire  [2:0] output_spikes;
   wire end_writing;
   wire data_written;
   
