@@ -1,7 +1,3 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-
-
 module LeakyIntegrateFireNeuron_test(
     input wire clk,                          // Clock signal
     input wire reset,                        // Asynchronous reset, active high
