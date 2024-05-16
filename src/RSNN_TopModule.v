@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module RSNN_TopModule(
     input wire [2:0] input_spikes,           // 3-bit input spikes for the network
     input wire clk,                          // Clock signal
