@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module RecurrentSpikingNeuron(
     input wire clk,                          // Clock signal
     input wire reset,                        // Asynchronous reset, active high
