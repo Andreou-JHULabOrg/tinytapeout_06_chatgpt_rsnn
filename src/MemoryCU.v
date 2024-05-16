@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module MemoryCU(
     input wire clk,                 // Clock input
     input wire rst,                 // Asynchronous reset input
