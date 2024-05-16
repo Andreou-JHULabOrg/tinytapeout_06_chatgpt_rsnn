@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module FIPO_Memory (
     input wire clk,                      // Clock input
     input wire rst,                      // Reset input
